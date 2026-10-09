@@ -1,8 +1,21 @@
 # Changelog
 
-Nothing has shipped yet, so every change sits under Unreleased; a version is minted only when a build is released. Phases 1-7 are tracked in `plans/260917-0502-markdown-visual-v1/plan.md` and are not back-filled here.
+Changes sit under Unreleased until a build is released; the release then gives them a version and date. Phases 1-7 are tracked in `plans/260917-0502-markdown-visual-v1/plan.md` and are not back-filled here.
 
 ## [Unreleased]
+
+## [1.0.6] - 2026-10-09
+
+### Added
+- New File: a button in the sidebar's Files toolbar and `Ctrl+N` create a Markdown file in the open folder; New File… in the tree's context menu creates one in that folder, or next to that file. The save dialog opens there with `Untitled.md` suggested, and the new file opens in a tab. A file that is already open in a tab is never emptied.
+- New Folder: a button next to New File and New Folder… in the tree's context menu put a name field at the top of the folder; Enter creates the folder, Escape cancels. A name Windows cannot use, or one that exists already, is refused with the reason under the field.
+
+### Fixed
+- Opening a file from another folder shows that folder in the sidebar. Before, the tree stayed on the folder restored from the last session (often Downloads) whatever file was opened. Files already open stay in their tabs, and a file inside the folder the tree already shows leaves it where it is.
+
+## [1.0.0 – 1.0.5]
+
+Shipped across 1.0.0 to 1.0.5; these entries were not split by version when they were released.
 
 ### Added
 - Editor: each document opens as Preview, Split or Editor (`Ctrl+1/2/3`) with a resizable split. CodeMirror 6 gives Markdown highlighting, search, and an undo history that survives tab and mode switches.
@@ -30,6 +43,7 @@ Nothing has shipped yet, so every change sits under Unreleased; a version is min
 - `/` moves focus to the sidebar's file filter (opening the sidebar first) unless you are typing in a field or the editor; `Ctrl+,` opens Settings.
 - Windows installer (`pnpm release:build`): install for the current user only or for all users, with a Start menu shortcut and an optional desktop one; the installer, its uninstaller and their pages carry the Markdown Visual icon and colours, and the publisher, copyright and homepage are filled in. It is not code-signed yet, so SmartScreen may ask for **More info**, then **Run anyway**.
 - The installer adds Markdown Visual to **Open with** for `.md`, `.markdown`, `.mdown` and `.mkd`, and **Open in Markdown Visual** to the right-click menu, and never makes it your default Markdown app. Uninstalling removes exactly those entries from where they were written and keeps your Markdown files and, unless you tick **Delete the application data**, the app's settings and history.
+- A second Windows distribution channel, Microsoft Store MSIX, alongside the direct-download installer (not published yet): `pnpm msix:prepare` / `msix:build` / `msix:sign` / `msix:verify` package, sign and smoke-test the MSIX from the same Tauri build; when the app runs as a Store-installed MSIX the direct-download updater is disabled (the Store manages updates instead). See `docs/microsoft-store-msix.md`.
 
 - Crash recovery: while a document has unsaved changes, a copy of its text is kept on the device (the first 5 seconds after the first edit, then at most every 30 seconds). After a crash or a power cut the next launch lists the files and offers **Restore** or **Discard** for each, or **Restore all** / **Discard all**; closing the prompt keeps the copies for next time. A restored file is unsaved text again; if the file changed on disk meanwhile you get the usual "changed on disk" banner instead of an overwrite, and a file that was deleted is written back to its old path. The copies are removed when you save, close the tab, reload from disk or choose Discard All on exit. They are plain text, on this device only: **Settings, Recovery** turns them off and removes any left, and a file over 8 MB gets none.
 - A screen that says "Markdown Visual hit a problem", shows the error and offers Reload replaces a blank window if the app's own interface fails. Your files are not touched.
