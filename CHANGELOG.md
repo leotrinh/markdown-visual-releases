@@ -4,6 +4,11 @@ Changes sit under Unreleased until a build is released; the release then gives t
 
 ## [Unreleased]
 
+## [1.0.7] - 2026-10-12
+
+### Changed
+- Microsoft Store package for the 1.0.6 features (New File, New Folder, sidebar follows the opened file); the app itself is unchanged since 1.0.6.
+
 ## [1.0.6] - 2026-10-09
 
 ### Added
