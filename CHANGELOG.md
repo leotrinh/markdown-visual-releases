@@ -4,6 +4,30 @@ Changes sit under Unreleased until a build is released; the release then gives t
 
 ## [Unreleased]
 
+## [1.0.9] - 2026-10-27
+
+### Changed
+- GitHub in About opens the releases page (`leotrinh/markdown-visual-releases`).
+- The installer version checks GitHub for updates at most once a day, 8 seconds after launch; Check for Updates still checks at once.
+- When the app is installed both from the Microsoft Store and with the installer, it says so once and suggests keeping only one.
+
+### Fixed
+- Links did nothing: Buy me a coffee and GitHub in About, links in the preview, and every other link to a website or an email address. The permission that lets the app open them was written in a shape the app could not read, so every open was refused silently.
+- A link that cannot be opened now says why in a notice, instead of doing nothing.
+
+## [1.0.8] - 2026-10-13
+
+### Added
+- A Welcome document opens once, the first time this version runs: a short tour, a preview of what Markdown looks like in the app, what the app does and does not send, and a link to support the author. Close it like any tab; it does not come back, and it stays out of Recent and the sidebar.
+
+### Changed
+- The Welcome screen names its support link plainly ("Buy me a coffee") instead of hiding it behind the author's name.
+- The privacy notes say what the update check sends; they still claimed there was none.
+- The Microsoft Store version no longer offers updates itself: Check for Updates opens the app's page in the Store, which installs updates.
+
+### Fixed
+- Download & Install could fail with "The process cannot access the file because it is being used by another process (os error 32)": the downloaded installer was started while the app still held it open.
+
 ## [1.0.7] - 2026-10-12
 
 ### Changed
